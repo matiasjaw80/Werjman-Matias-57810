@@ -1,0 +1,22 @@
+{% extends 'main.html' %} {% load static %} {% block contenidoQueCambia %}
+
+<div class="container">
+    <h1>Crear Curso</h1>
+    <a href="{% url 'ListaCursos' %}" class="btn btn-primary">Ver Cursos</a>
+    <a href="{% url 'BusquedaComision' %}" class="btn btn-primary">Buscar Cursos</a>
+    {% if error %}
+    <div class="alert alert-danger" role="alert">
+        Datos de formulario invalidos. Por favor, verifique los datos e intentelo de nuevo.
+    </div>
+    {% endif %}
+    <form action="{% url 'CursoFormulario' %}" method="POST" class="m-4">
+        {% csrf_token %}
+        {{miFormulario.as_div}}
+        <p>ACLARACIÓN: Se debe introducir el URL de la imagen</p>
+        <div class="col-12 m-2">
+            <button type="submit" class="btn btn-primary">Crear</button>
+        </div>
+
+    </form>
+</div>
+{% endblock contenidoQueCambia %}

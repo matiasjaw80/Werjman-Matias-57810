@@ -1,0 +1,23 @@
+{% extends 'main.html' %}
+{% load static %}
+
+{% block contenidoQueCambia %}
+
+<div class="container d-flex d-flex justify-content-center align-items-center vh-100">
+    <div class="card text-white bg-secondary border-white" style="max-width: 50rem;">
+        <div class="card-header"><h1>Login</h1></div>
+            <div class="card-body">
+                        
+                {{error}}
+                <form action="" method="POST">
+                    {% csrf_token %}
+                    {{miFormulario.as_p}}
+                    <button type="submit" class="btn btn-success">Ingresar</button>
+                </form>
+
+            </div>            
+        </div>
+
+    </div>
+</div>
+{% endblock contenidoQueCambia %}

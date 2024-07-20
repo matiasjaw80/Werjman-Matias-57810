@@ -1,0 +1,63 @@
+{% extends 'main.html' %}
+{% load static %}
+{% block contenidoQueCambia %}
+<div class="container">
+    <h1>Lista Profesores</h1>
+    <a href="{% url 'CrearProfesor' %}" class="btn btn-primary">Agregar Profesor</a>
+
+    <table class="table table-striped table-hover">
+        <thead>
+            <tr>
+                <th scope="col">Nombre</th>
+                <th scope="col">Apellido</th>
+                <th scope="col">E-Mail</th>
+                <th scope="col">Profesion</th>
+                <th scope="col">Cursos</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for Profesor in Profesor %}
+            <tr>
+
+                <td>
+                    {{Profesor.nombre}}
+                </td>
+                <td>
+                    {{Profesor.apellido}}
+                </td>
+                <td>
+                    {{Profesor.email}}
+                </td>
+                <td>
+                    {{Profesor.profesion}}
+                </td>
+                <td>
+                    {{Profesor.cursos}}
+                </td>
+
+                <td class="d-flex d-flex inline">
+                    <span>
+                        <form action="{% url 'EliminarProfesor' Profesor.id %}" method="GET">
+                            {% csrf_token %}
+                            <button class="btn btn-danger">
+                                Borrar
+                            </button>
+                        </form>
+                    </span>
+                    <span>
+                        <form action="{% url 'EditarProfesor' Profesor.id %}" method="GET">
+                            {% csrf_token %}
+                            <button class="btn btn-warning">
+                                Editar
+                            </button>
+                        </form>
+                    </span>
+                </td>
+            </tr>
+
+            {% endfor %}
+        </tbody>
+    </table>
+
+</div>
+{% endblock contenidoQueCambia %}

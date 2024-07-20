@@ -1,0 +1,25 @@
+{% extends 'main.html' %} {% load static %} {% block contenidoQueCambia %}
+
+<div class="container d-flex d-flex justify-content-center align-items-center vh-100">
+    <div class="card text-white bg-secondary border-white" style="max-width: 50rem;">
+        <div class="card-header"><h1>Editar Curso</h1></div>
+            <div class="card-body">
+    
+                {% if error %}
+                <div class="alert alert-danger" role="alert">
+                    Datos de formulario invalidos. Por favor, verifique los datos e intentelo de nuevo.
+                </div>
+                {% endif %}
+
+                <form action="{% url 'EditarCurso' curso.id %}" method="POST" class="m-4">
+                    {% csrf_token %}
+                    {{form.as_div}}
+                    <div class="col-12 m-2">
+                        <button type="submit" class="btn btn-primary">Actualizar</button>
+                        <a href="{% url 'ListaCursos' %}" class="btn btn-primary">Volver a Cursos</a>
+                    </div>
+                </form>
+            </div>            
+        </div>
+</div>
+{% endblock contenidoQueCambia %}

@@ -1,0 +1,59 @@
+{% extends 'main.html' %}
+{% load static %}
+{% block contenidoQueCambia %}
+<div class="container">
+    <h1>Lista Estudiantes</h1>
+    <a href="{% url 'CrearEstudiante' %}" class="btn btn-primary">Agregar Estudiante</a>
+
+    <table class="table table-striped table-hover">
+        <thead>
+            <tr>
+                <th scope="col">Nombre</th>
+                <th scope="col">Apellido</th>
+                <th scope="col">E-Mail</th>
+                <th scope="col">Cursos</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for Estudiante in Estudiante %}
+            <tr>
+
+                <td>
+                    {{Estudiante.nombre}}
+                </td>
+                <td>
+                    {{Estudiante.apellido}}
+                </td>
+                <td>
+                    {{Estudiante.email}}
+                </td>
+                <td>
+                    {{Estudiante.cursos}}
+                </td>
+
+                <td class="d-flex d-flex inline">
+                    <span>
+                        <form action="{% url 'EliminarEstudiante' Estudiante.id %}" method="GET">
+                            {% csrf_token %}
+                            <button class="btn btn-danger">
+                                Borrar
+                            </button>
+                        </form>
+                    </span>
+                    <span>
+                        <form action="{% url 'EditarEstudiante' Estudiante.id %}" method="GET">
+                            {% csrf_token %}
+                            <button class="btn btn-warning">
+                                Editar
+                            </button>
+                        </form>
+                    </span>
+                </td>
+            </tr>
+
+            {% endfor %}
+        </tbody>
+    </table>
+
+</div>
+{% endblock contenidoQueCambia %}

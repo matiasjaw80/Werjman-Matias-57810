@@ -1,0 +1,28 @@
+{% extends 'main.html' %} {% load static %} {% block contenidoQueCambia %}
+
+<div class="container d-flex d-flex justify-content-center align-items-center vh-100">
+    <div class="card text-white bg-secondary border-white" style="max-width: 50rem;">
+        <div class="card-header"><h1>Agregar Avatar</h1></div>
+            <div class="card-body">
+                
+                {% if error %}
+                <div class="alert alert-danger" role="alert">
+                    Datos de formulario invalidos. Por favor, verifique los datos e intentelo de nuevo.
+                </div>
+                {% endif %}
+
+
+                <form action="" method="post" enctype="multipart/form-data"> 
+
+                    {% csrf_token %}
+                    <table>
+                        {{ form.as_table }}
+                    </table>
+                    <input type="submit" value="Actualizar Avatar">
+                </form>
+
+            </div>            
+        </div>
+    </div>
+</div>
+{% endblock contenidoQueCambia %}

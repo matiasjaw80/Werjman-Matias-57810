@@ -1,0 +1,11 @@
+{
+    "sqltools.connections": [
+        {
+            "previewLimit": 50,
+            "driver": "SQLite",
+            "database": "${workspaceFolder:proyecto_Django}/Proyecto/db.sqlite3",
+            "name": "database"
+        }
+    ],
+    "sqltools.useNodeRuntime": true
+}

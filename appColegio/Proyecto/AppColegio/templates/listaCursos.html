@@ -1,0 +1,51 @@
+{% extends 'main.html' %} {% load static %} {% block contenidoQueCambia %}
+<div class="container">
+    <h1>Lista de Cursos</h1>
+    <a href="{% url 'CrearCurso' %}" class="btn btn-primary">Agregar Curso</a>
+    <a href="{% url 'buscarCursos' %}" class="btn btn-primary">Buscar Curso</a>
+    <div class="container">
+        <div class="row">
+            {% for curso in cursos %}
+
+            <div class="col-sm-12 col-md-6 col-lg-4">
+                <div class="shadow-lg p-3 mb-5 bg-body-tertiary rounded">
+                    <div class="card text-center mb-4 w-4" style="">
+                        <a href="{% url 'DetalleCurso' curso.id %}">
+                            <img src="{{curso.imagen}}" class="card-img-top" alt="...">
+                        </a>
+                        
+                        <div class="card-body">
+                            <p class="card-title">{{curso.nombre}}</p>
+                            <p class="card-text">{{curso.comision}}</p>
+                            <p class="card-text">{{curso.codigo}}</p>
+                            <div class="d-flex flex-row mb-2 justify-content-center">
+
+                                    <form action="{% url 'EliminarCurso' curso.id %}" method="GET">
+                                        {% csrf_token %}
+                                        <button class="btn btn-danger">
+                                            Borrar
+                                        </button>
+                                    </form>
+                                    <form action="{% url 'EditarCurso' curso.id %}" method="GET">
+                                        {% csrf_token %}
+                                        <button class="btn btn-warning">
+                                            Editar
+                                        </button>
+                                    </form>
+
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+
+</div>
+
+
+</div>
+
+{% endblock contenidoQueCambia %}

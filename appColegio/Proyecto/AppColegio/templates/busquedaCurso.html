@@ -1,0 +1,68 @@
+{% extends 'main.html' %} {% load static %} {% block contenidoQueCambia %}
+<div class="container d-flex d-flex justify-content-center align-items-center vh-100">
+    <div class="card text-white bg-secondary border-white" style="max-width: 50rem;">
+        <div class="card-header"><h1>Busqueda de Curso</h1></div>
+            <div class="card-body">
+
+            <form action="{% url 'encontrarCursos' %}" method="GET">
+                {% csrf_token %}
+                <div class="form">
+                    <div class="d-flex m-4">
+
+                        <input type="text" class="form-control" id="nombre" name="nombre" placeholder="Inserte palabra clave"
+                            required><button type="submit" class="btn btn-primary">Buscar</button>
+                    </div>
+                </div>
+
+                {% if cursos %}
+                <div class="container">
+                    <div class="row">
+                        {% for curso in cursos %}
+                            <div class="col-md-4">
+                                <div class="card  mb-4 w-4" style="width:15rem;height:23rem">
+                                    <img src="{{curso.imagen}}" class="card-img-top" alt="...">
+                                    <div class="card-body">
+                                        <p class="card-title">{{curso.nombre}}</p>
+                                        <p class="card-text">{{curso.comision}}</p>
+                                        <p class="card-text">{{curso.codigo}}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        {% endfor %}
+                      
+                    </div>  
+                </div>
+            </form>
+            <div class="col-12 m-2">
+                <a href="{% url 'ListaCursos' %}" class="btn btn-primary">Volver a Cursos</a>
+            </div>
+
+
+        </div>
+    </div>
+
+
+
+
+
+    {% else %}
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4">
+                <div class="card  mb-4 w-4" style="width:15rem;height:23rem">
+                    <img src="{% static 'img/sin_imagen.jpeg'%}" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <p class="card-title">Nombre del curso</p>
+                        <p class="card-text">Numero de comision</p>
+                        <p class="card-text">Codigo de curso</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+
+
+</div>
+
+{% endblock contenidoQueCambia %}

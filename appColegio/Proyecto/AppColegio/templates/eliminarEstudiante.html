@@ -1,0 +1,36 @@
+{% extends 'main.html' %} {% load static %} {% block contenidoQueCambia %}
+<div class="container">
+
+    <div class="container d-flex d-flex justify-content-center align-items-center vh-100">
+        <div class="card text-white bg-secondary border-white" style="max-width: 50rem;">
+            <div class="card-header"><h1>Eliminar Estudiante</h1></div>
+                <div class="card-body">
+
+                                <form action="{% url 'EliminarEstudiante' Estudiante.id %}" method="POST">
+                                    {% csrf_token %}
+                                    <h1 class="card-title">
+                                    Desea eliminar el Estudiante ?
+                                    </h1>
+                                    <h2>
+                                    {{Estudiante.nombre}}
+                                    </h2>
+                                    <span>
+                                        <a href="{% url 'ListaEstudiantes'%}" class="btn btn-warning">Cancelar</a>
+                                    </span>
+                                    <span>
+                                        <button class="btn btn-danger" type="submit">Eliminar</button>
+                                    </span>
+                                </form>
+
+                            </div> 
+                        </div>
+                    </div>            
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+
+{% endblock contenidoQueCambia %}

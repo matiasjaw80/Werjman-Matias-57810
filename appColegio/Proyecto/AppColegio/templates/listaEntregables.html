@@ -1,0 +1,58 @@
+{% extends 'main.html' %}
+{% load static %}
+{% block contenidoQueCambia %}
+<div class="container">
+    <h1>Lista Entregables</h1>
+    <a href="{% url 'CrearEntregable' %}" class="btn btn-primary">Crear Entregable</a>
+
+    <table class="table table-striped table-hover">
+        <thead>
+            <tr>
+                <th scope="col">Nombre</th>
+                <th scope="col">Fecha de entrega</th>
+                <th scope="col">Entregado</th>
+                <th scope="col">Accion</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for entregable in entregables %}
+            <tr>
+
+                <td>{{entregable.nombre}}</td>
+                <td>
+                    {{entregable.fecha_entrega}}
+                </td>
+                <td>
+                    {% if entregable.entregado == True %}
+                    Si
+                    {% else %}
+                    No
+                    {% endif %}
+                </td>
+
+                <td class="d-flex d-flex inline">
+                    <span>
+                        <form action="{% url 'EliminarEntregable' entregable.id %}" method="GET">
+                            {% csrf_token %}
+                            <button class="btn btn-danger">
+                                Borrar
+                            </button>
+                        </form>
+                    </span>
+                    <span>
+                        <form action="{% url 'EditarEntregable' entregable.id %}" method="GET">
+                            {% csrf_token %}
+                            <button class="btn btn-warning">
+                                Editar
+                            </button>
+                        </form>
+                    </span>
+                </td>
+            </tr>
+
+            {% endfor %}
+        </tbody>
+    </table>
+
+</div>
+{% endblock contenidoQueCambia %}
