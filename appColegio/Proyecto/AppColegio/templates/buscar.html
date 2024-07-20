@@ -6,11 +6,18 @@
 
             <form action="{% url 'encontrarCursos' %}" method="GET">
                 {% csrf_token %}
+
                 <div class="form">
                     <div class="d-flex m-4">
 
-                        <input type="text" class="form-control" id="nombre" name="nombre" placeholder="Inserte palabra clave"
-                            required><button type="submit" class="btn btn-primary">Buscar</button>
+                        <input
+                        type="text"
+                        class="form-control"
+                        id="buscar"
+                        name="buscar"
+                        placeholder="Inserte palabra clave"required>
+                        <button type="submit" class="btn btn-primary">Buscar</button>
+
                     </div>
                 </div>
 

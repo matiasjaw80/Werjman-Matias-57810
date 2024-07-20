@@ -262,7 +262,7 @@ def eliminarEntregable(request, id):
 
 @login_required
 def buscarCursos(request):
-    return render(request, 'busquedaCurso.html')
+    return render(request, 'buscar.html')
 
 def encontrarCursos(request):
     if request.GET["buscar"]:
@@ -272,7 +272,7 @@ def encontrarCursos(request):
     else:
         contexto = {'cursos': Curso.objects.all()}
         
-    return render(request, "busquedaCurso.html", contexto)
+    return render(request, "buscar.html", contexto)
 
 
 #____Class______
