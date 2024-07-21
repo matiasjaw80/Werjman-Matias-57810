@@ -6,15 +6,14 @@ Desarrollado por Werjman Matias tercera pre-entrega de proyecto.
 ![imagen1](https://github.com/matiasjaw80/python/assets/139645562/73262ba2-ecb6-46a1-a8c9-161448db4032)
 
 ## video1
-![video1][https://youtu.be/pILWFNaiskA]
-
+[![Alt text](https://img.youtube.com/vi/pILWFNaiskA/0.jpg)](https://youtu.be/pILWFNaiskA)
 
 ## Instrucciones para Inicializar el proyecto:
 
 ### 1. En la terminal, dirigirse a una carpeta donde se desea clonar el proyecto y escribir y ejecutar:
 
 ```terminal
-git clone https://github.com/matiasjaw80/python.git
+git clone https://github.com/matiasjaw80/Werjman-Matias-57810.git
 ```
 
 ### 2. Abrir el directorio donde se encuentra clonado el repositorio:
