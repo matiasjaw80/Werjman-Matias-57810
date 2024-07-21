@@ -12,7 +12,7 @@ urlpatterns = [
     path('about/', about, name="about"),
        
     
-    # path('cursoformulario/', cursoFormulario, name="CursoFormulario"),
+    
     path('listaCursos/', CursoList.as_view(), name="ListaCursos"),
     path('detalleCurso/<pk>/', CursoDetail.as_view(), name="DetalleCurso"),
     path('editarCurso/<pk>/', CursoUpdate.as_view(), name="EditarCurso"),
@@ -26,7 +26,7 @@ urlpatterns = [
     path('crearEntregable/', EntregableCreate.as_view(), name="CrearEntregable"),
     path('eliminarEntregable/<pk>/', EntregableDelete.as_view(), name="EliminarEntregable"),
     
-    # path('profesorformulario/', profesorFormulario, name="ProfesorFormulario"),
+    
     path('listaProfesores/', ProfesorList.as_view(), name="ListaProfesores"),
     path('detalleProfesor/<pk>/', ProfesorDetail.as_view(), name="DetalleProfesor"),
     path('editarProfesor/<pk>/', ProfesorUpdate.as_view(), name="EditarProfesor"),
@@ -55,7 +55,7 @@ urlpatterns = [
 
     #___ Edición de Perfil y Avatar      
     path('editarPerfil/', editProfile, name="editarPerfil" ),
-    path('password/', CambiarClave.as_view(), name="cambiarClave"),   
+    path('<int:pk>/password/', CambiarClave.as_view(), name="cambiarClave"),
     path('agregarAvatar/', agregarAvatar, name="agregar_avatar" ),            
 
 ]

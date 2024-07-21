@@ -1,8 +1,14 @@
 from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
 
+
+from django.contrib.auth.models import User
+from django.contrib import messages
+from django.contrib.auth import get_user_model
+
 from .forms import *
 from .models import *
+
 
 # Create your views here.
 from django.views.generic import ListView
@@ -22,6 +28,8 @@ from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.decorators import login_required
+
+from django.http import HttpResponse
 
 #______________________________________________________________________________________
 
@@ -262,23 +270,25 @@ def eliminarEntregable(request, id):
 
 @login_required
 def buscarCursos(request):
-    return render(request, 'buscar.html')
+    return render(request, "buscar.html")
 
 def encontrarCursos(request):
     if request.GET["buscar"]:
-        patron = request.GET["buscar"]
-        cursos = Curso.objects.filter(nombre__icontains=patron)
-        contexto = {'cursos': cursos}    
+         patron = request.GET["buscar"]
+         cursos = Curso.objects.filter(nombre__icontains=patron)
+         contexto = {'cursos': cursos}    
     else:
-        contexto = {'cursos': Curso.objects.all()}
+         contexto = {'cursos': Curso.objects.all()}
         
     return render(request, "buscar.html", contexto)
-
 
 #____Class______
 
 def index(request):
-    return render(request, 'index.html')
+    return render(request, "index.html")
+
+def inicio(request):
+    return render(request, "inicio.html")
 
 
 
@@ -469,26 +479,29 @@ def register(request):
 
 @login_required
 def editProfile(request):
-    usuario = request.user
-    if request.method == "POST":
-        miform = UserEditForm(request.POST)
+    """
+    Función de vista para editar perfiles de usuario.
+    """
+
+    if request.method == 'POST':
+        miform = UserEditForm(request.POST, instance=request.user)
         if miform.is_valid():
-            user = User.objects.get(username=usuario)
-            usuario.email = miform.cleaned_data.get('email')
-            usuario.first_name = miform.cleaned_data.get('first_name')
-            usuario.last_name = miform.cleaned_data.get('last_name')
-            usuario.save()
-            return redirect(reverse_lazy,('Inicio'))
+            miform.save()
+            messages.success(request, '¡Tu perfil se ha actualizado correctamente!')
+            return redirect('Inicio')  # Redirigir a la URL deseada después de la actualización exitosa
+
     else:
-        miform = UserEditForm(instance=usuario)
+        miform = UserEditForm(instance=request.user)
+
     return render(request, "editarPerfil.html", {"form": miform})
+
 
 #______________________________________________________________________________________
 
-
+ 
 class CambiarClave(LoginRequiredMixin, PasswordChangeView):
-    template_name = "cambiarClave.html"
-    success_url = reverse_lazy("inicio")
+    template_name = "cambiar_Clave.html"
+    success_url = reverse_lazy('Inicio')    
 
 
 #______________________________________________________________________________________    

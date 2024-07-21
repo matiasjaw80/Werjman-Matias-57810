@@ -6,21 +6,17 @@
 <div class="container d-flex d-flex justify-content-center align-items-center vh-100">
     <div class="card text-white bg-secondary border-white" style="max-width: 50rem;">
         <div class="card-header"><h1>Cambiar Contraseña</h1></div>
-            <div class="card-body">
-                        
-                {{error}}
-                
-                <form action="" method="post">
+            <div class="card-body">                        
+                {{error}}              
+                <form method="post">
                     {% csrf_token %}
                     <table>
                         {{ form.as_table }}
                     </table>
-                    <input type="submit" value="Cambiar Clave">
+                    <button type="submit" value="Cambiar Clave">Cambiar Clave</button>
                 </form>
-
             </div>            
         </div>
-
     </div>
 </div>
 {% endblock contenidoQueCambia %}
