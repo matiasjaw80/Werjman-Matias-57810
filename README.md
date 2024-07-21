@@ -2,9 +2,6 @@
 
 Desarrollado por Werjman Matias tercera pre-entrega de proyecto.
 
-## imagen1
-![imagen1](https://github.com/matiasjaw80/python/assets/139645562/73262ba2-ecb6-46a1-a8c9-161448db4032)
-
 ## video1
 [![Alt text](https://img.youtube.com/vi/pILWFNaiskA/0.jpg)](https://youtu.be/pILWFNaiskA)
 
